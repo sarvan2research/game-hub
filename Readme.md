@@ -34,4 +34,10 @@ const theme =extendTheme({config});```
 Adding theme with intial valus in main.tsx
 ```<ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />```
+
+### Use of Abort Controller
+Article explains about  abortcontroller to make exitisng request server to abort and create new one.
+https://medium.datadriveninvestor.com/aborting-cancelling-requests-with-fetch-or-axios-db2e93825a36
 ````
+
+Extracting useEffect to hook module to make seperation principle.
