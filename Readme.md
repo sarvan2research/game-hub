@@ -41,3 +41,8 @@ https://medium.datadriveninvestor.com/aborting-cancelling-requests-with-fetch-or
 ````
 
 Extracting useEffect to hook module to make seperation principle.
+
+#### Theme spacing
+
+<HStack marginY={1}> //theme.space default is 1:4px
+<HStack marginY={"10px"}> //theme.space default is 1:4px
