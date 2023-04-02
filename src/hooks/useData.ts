@@ -1,22 +1,15 @@
 import { CanceledError } from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import appClient from "../service/app-client";
-import { Platform } from "./useGames";
 
-export interface Genres {
-  id: number;
-  name: string;
-  background_image: string;
-  parent_platforms: { platform: Platform }[];
-  metacritic: number;
-}
-interface FetchedGenreList {
+
+interface FetchedGenreList<T> {
   count: number;
-  results: Genres[];
+  results: T[];
 }
 
-const useGeneres = () => {
-  const [genres, SetGenres] = useState<Genres[]>([]);
+const useData = <T>(endpoint:string) => {
+  const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
@@ -24,9 +17,9 @@ const useGeneres = () => {
     setLoading(true);
     const controller = new AbortController();
     appClient
-      .get<FetchedGenreList>("/genres", { signal: controller.signal })
+      .get<FetchedGenreList<T>>(endpoint, { signal: controller.signal })
       .then((res) => {
-        SetGenres(res.data.results);
+        setData(res.data.results);
         setLoading(false);
       })
       .catch((err) => {
@@ -38,7 +31,7 @@ const useGeneres = () => {
     return () => controller.abort();
   }, []);
 
-  return { genres, error, isLoading };
+  return { data, error, isLoading };
 };
 
-export default useGeneres;
+export default useData;

@@ -1,0 +1,12 @@
+import { CanceledError } from "axios";
+import { useEffect, useState } from "react";
+import appClient from "../service/app-client";
+import useData from "./useData";
+
+export interface Genre {
+  id: number;
+  name: string;
+}
+const useGenres=()=>useData<Genre>("/genres")
+
+export default useGenres;
