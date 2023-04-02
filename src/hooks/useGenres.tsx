@@ -10,7 +10,7 @@ export interface Genres {
   parent_platforms: { platform: Platform }[];
   metacritic: number;
 }
-interface FetchedGameList {
+interface FetchedGenreList {
   count: number;
   results: Genres[];
 }
@@ -24,7 +24,7 @@ const useGeneres = () => {
     setLoading(true);
     const controller = new AbortController();
     appClient
-      .get<FetchedGameList>("/genres", { signal: controller.signal })
+      .get<FetchedGenreList>("/genres", { signal: controller.signal })
       .then((res) => {
         SetGenres(res.data.results);
         setLoading(false);
