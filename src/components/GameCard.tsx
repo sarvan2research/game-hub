@@ -5,6 +5,7 @@ import { icons } from "react-icons";
 import CriticsScore from "./CriticsScore";
 import getCroppedImageUrl from "../service/image-url";
 import GameCardContainer from "./GameCardContainer";
+import Emojis from "./Emojis";
 
 interface Props {
   game: Game;
@@ -25,6 +26,7 @@ const GameCard = ({ game }: Props) => {
           </HStack>
           <Heading fontSize={"2xl"} key={game.id}>
             {game.name}
+            <Emojis rating={game.rating_top} />
           </Heading>
         </CardBody>
       </Card>
